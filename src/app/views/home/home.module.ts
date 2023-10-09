@@ -6,6 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomeSliderModule } from 'src/app/shared/components/home-slider/home-slider.module';
+import { ProductListingModule } from 'src/app/shared/components/product-listing/product-listing.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HomeSliderModule } from 'src/app/shared/components/home-slider/home-sli
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HomeSliderModule
+    HomeSliderModule,
+    ProductListingModule
   ],
   declarations: [HomePage]
 })
