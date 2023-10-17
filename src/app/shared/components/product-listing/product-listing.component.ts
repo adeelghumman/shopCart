@@ -18,9 +18,6 @@ export class ProductListingComponent  implements OnInit {
 
   ngOnInit() {
     this._store.dispatch(new getAllProducts());
-    this.productDetails.subscribe(c=>{
-      console.log(c)
-    })
   }
 
 }

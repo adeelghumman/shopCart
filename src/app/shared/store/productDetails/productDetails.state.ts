@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 
 const defaults: any = {
     message: '',
-    data: {} as any
+    data: [] as any
  };
 @State<any>({
     name: 'ProductDetails',
@@ -37,7 +37,10 @@ export class ProductDetailsState {
         this._api.get(url ).pipe(take(1)).subscribe({
             next: (res: any) => {
                 setState({
-                    response: res,
+                    response: {
+                        message: 'Products fetched successfully',
+                        data: res 
+                     },
                     loader: false,
                     success: true,
                     updateLoader:false
