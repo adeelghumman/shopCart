@@ -17,7 +17,7 @@ export class ProductDetailsPage implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe(params => {
-      const id = params['id']; // 'id' should match the parameter name defined in your route
+      const id = params['id'];
       this._store.dispatch(new getProductById(id))
     });
 

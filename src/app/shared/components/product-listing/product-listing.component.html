@@ -7,20 +7,24 @@
         Trending products
       </h2>
       <a
-        href="#"
-        class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block"
+        (click)="addNewProductDetails()"
+        class=" text-sm font-medium text-indigo-600 flex hover:text-indigo-500 md:block cursor-pointer"
       >
-        Shop the collection
-        <span aria-hidden="true"> &rarr;</span>
+      <div class="flex">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+        Add New Product
+      </div>
       </a>
     </div>
 
     <!-- Products Container -->
     <ng-container *ngIf="(productDetails | async) as products">
       <div
-        class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8"
+        class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8 "
       >
-        <div class="group relative" *ngFor="let product of products.data">
+        <div class="group relative cursor-pointer"(click)="productDetailPage(product.Id)"  *ngFor="let product of products.data">
           <div
             class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80"
           >
@@ -31,10 +35,8 @@
             />
           </div>
           <h3 class="mt-4 text-sm text-gray-700">
-            <a href="/product-details">
               <span class="absolute inset-0"></span>
               {{product.name}}
-            </a>
           </h3>
           <p class="mt-1 text-sm text-gray-500">{{product.description}}</p>
           <p class="mt-1 text-sm font-medium text-gray-900">${{product.price}}</p>
@@ -43,10 +45,10 @@
     </ng-container>
 
     <div class="mt-8 text-sm md:hidden">
-      <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+      <span  class="font-medium text-indigo-600 hover:text-indigo-500">
         Shop the collection
         <span aria-hidden="true"> &rarr;</span>
-      </a>
+      </span>
     </div>
   </div>
 </div>
