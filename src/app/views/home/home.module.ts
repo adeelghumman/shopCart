@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomeSliderModule } from 'src/app/shared/components/home-slider/home-slider.module';
 import { ProductListingModule } from 'src/app/shared/components/product-listing/product-listing.module';
+import { AddNewProductModule } from 'src/app/shared/components/add-new-product/add-new-product.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ProductListingModule } from 'src/app/shared/components/product-listing/
     IonicModule,
     HomePageRoutingModule,
     HomeSliderModule,
-    ProductListingModule
+    ProductListingModule,
+    AddNewProductModule
   ],
   declarations: [HomePage]
 })
