@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Select, Selector, Store } from '@ngxs/store';
 import { createProduct, getAllProducts } from '../../store/productDetails/productDetails.actions';
@@ -17,9 +17,9 @@ export class AddNewProductComponent implements OnInit {
   @Select(ProductDetailsSelector.productDetailsLoader) productDetailsLoader$!: Observable<boolean>;
 
   productForm = new FormGroup({
-    name: new FormControl(''),
-    price: new FormControl(''),
-    description: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
     image: new FormControl(''),
     inStock: new FormControl(false)
   });

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { getAllProducts } from 'src/app/shared/store/productDetails/productDetails.actions';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private _store: Store,
+  ) {}
+
+  ngOnInit() {
+    this._store.dispatch(new getAllProducts());
+  }
 
 }

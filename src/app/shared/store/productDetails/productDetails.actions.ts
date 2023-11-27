@@ -14,4 +14,9 @@ export class getAllProducts {
     static readonly type = '[createProduct] Create Product';
     constructor(public body: Product ) { }
   }
+
+  export class deleteProduct {
+    static readonly type = '[DeleteProduct] Delete Product';
+    constructor(public id: string ) { }
+  }
   
