@@ -1,6 +1,6 @@
 // app.state.ts
 import { State, Action, StateContext } from '@ngxs/store';
-import { getAllProducts, getProductById } from './productDetails.actions';
+import { createProduct, getAllProducts, getProductById } from './productDetails.actions';
 import { ApiService } from '../../services/api/api.service';
 import { take } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -70,6 +70,37 @@ export class ProductDetailsState {
                 setState({
                     response: {
                         message: 'Product detail successfully',
+                        data: res 
+                     },
+                    loader: false,
+                    success: true,
+                    updateLoader:false
+
+                });
+            },
+            error: (e) => {
+                patchState({
+                    loader: false,
+                    success: false
+                })
+            }
+        });
+    }
+
+    @Action(createProduct) createProduct(
+        { patchState, setState }: StateContext<any>,
+        { body }: createProduct
+    ){
+        patchState({
+            loader: true,
+            response: undefined
+        });
+        let url: string = `products`;
+        this._api.post(url, body ).pipe(take(1)).subscribe({
+            next: (res: any) => {
+                setState({
+                    response: {
+                        message: 'Product created successfully',
                         data: res 
                      },
                     loader: false,

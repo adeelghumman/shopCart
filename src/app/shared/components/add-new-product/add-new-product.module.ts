@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
     ReactiveFormsModule,
   ],
