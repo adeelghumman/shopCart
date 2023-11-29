@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { getAllProducts } from '../../store/productDetails/productDetails.actions';
 import { ProductDetailsSelector } from '../../store/productDetails/productDetails.selectors';
@@ -13,6 +13,8 @@ import { AddNewProductComponent } from '../add-new-product/add-new-product.compo
   styleUrls: ['./product-listing.component.scss'],
 })
 export class ProductListingComponent implements OnInit {
+
+  @Input() asAPage : boolean = false;
   @Select(ProductDetailsSelector.productDetails) productDetails!: Observable<any>;
 
   constructor(
@@ -46,6 +48,11 @@ export class ProductListingComponent implements OnInit {
       if (Role.role === 'save') {
       }
     })
+  }
+
+  //navigate to the specific route
+  navigate(url: string){
+    this._router.navigate([url]);
   }
 
 }

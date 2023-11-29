@@ -60,27 +60,28 @@ export class ProductDetailsPage implements OnInit {
 
   //Edit product
   async editProduct() {
-  const m = await this._modal.create({
-    component: AddNewProductComponent,
-    animated: true,
-    backdropDismiss: true,
-    cssClass: 'addNewProductDetails',
-    componentProps: {
-      userId: this.userId,
-      isUpdateForm: true
-    }
-  });
-  await m.present();
-  m.onDidDismiss().then((Role) => {
-    if (Role.role === 'save') {
+    const m = await this._modal.create({
+      component: AddNewProductComponent,
+      animated: true,
+      backdropDismiss: true,
+      cssClass: 'addNewProductDetails',
+      componentProps: {
+        userId: this.userId,
+        isUpdateForm: true
+      }
+    });
+    await m.present();
+    m.onDidDismiss().then((Role) => {
+      if (Role.role === 'save') {
 
-    }
-  })
-}
+      }
+    })
+  }
 
-// Navigate back to home page
-navigateToHome(){
-  this._router.navigate(['home']);
-}
+  // Navigate back to home page
+  navigateToHome() {
+    this._router.navigate(['home']);
+    this._store.dispatch(new getAllProducts())
+  }
 
 }

@@ -2,6 +2,9 @@
   <div
     class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
   >
+    <svg *ngIf="asAPage" (click)="navigate('home')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 cursor-pointer my-2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+    </svg>
     <div class="md:flex md:items-center md:justify-between">
       <h2 class="text-2xl font-bold tracking-tight text-gray-900">
         Trending products
@@ -22,11 +25,11 @@
     <!-- Products Container -->
     <ng-container *ngIf="(productDetails | async) as products">
       <div
-        class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8 "
+        class="flex overflow-x-scroll gap-x-3 " [ngClass]="{'mt-6 grid grid-cols-4 !overflow-hidden gap-x-4 gap-y-10 sm:gap-x-6 md:grid-y-0 lg:gap-x-8': asAPage}"
       >
         <div class="group relative cursor-pointer"(click)="productDetailPage(product.Id)"  *ngFor="let product of products.data">
           <div
-            class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80"
+            class="h-56 w-52 overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80" [ngClass]="{'w-full': asAPage}"
           >
             <img
               src="https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg"
@@ -44,8 +47,8 @@
       </div>
     </ng-container>
 
-    <div class="mt-8 text-sm md:hidden">
-      <span  class="font-medium text-indigo-600 hover:text-indigo-500">
+    <div *ngIf="!asAPage"  class="mt-8 text-sm cursor-pointer">
+      <span (click)="navigate('all-products')" class="font-medium text-indigo-600 hover:text-indigo-500">
         Shop the collection
         <span aria-hidden="true"> &rarr;</span>
       </span>

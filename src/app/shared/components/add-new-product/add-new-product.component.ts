@@ -82,8 +82,9 @@ export class AddNewProductComponent implements OnInit {
       this._store.dispatch(new createProduct(this.mapToDestinationType(this.productForm.value)));
     }
 
-    this.productDetailsLoader$.pipe(val => val, take(1)).subscribe(res => {
-      if (res) {
+    this.productDetailsLoader$.pipe(skipWhile(val => val), take(1)).subscribe(res => {
+      console.log(res)
+      if (!res) {
         this.dismissModal();
         if(!this.isUpdateForm){
           this._store.dispatch(new getAllProducts());
@@ -105,10 +106,11 @@ export class AddNewProductComponent implements OnInit {
   }
 
   mapToDestinationType(source: any): Product {
+    const now = new Date();
     return {
       name: source.name,
       description: source.description,
-      createdDate: null,
+      createdDate: now,
       createdBy: '',
       image: '',
       inStoke: source.inStock,
