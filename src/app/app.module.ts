@@ -11,8 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, StoreModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot({
+      mode: 'ios',
+      swipeBackEnabled: false
+    }),
+    AppRoutingModule,
+    StoreModule,
+    HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
