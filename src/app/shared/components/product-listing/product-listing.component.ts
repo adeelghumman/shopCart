@@ -30,7 +30,6 @@ export class ProductListingComponent implements OnInit {
    * @param {string} id - Product ID
    */
   productDetailPage(id: string): void {
-    console.log(id)
     this._router.navigate([`/product-details/${id}`]);
   }
 
@@ -45,7 +44,6 @@ export class ProductListingComponent implements OnInit {
 
     m.onDidDismiss().then((Role) => {
       if (Role.role === 'save') {
-
       }
     })
   }

@@ -17,9 +17,10 @@ export class ProductDetailsPage implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _store: Store,
-    private _modal : ModalController
-    ) { }
+    private _modal: ModalController
+  ) { }
 
 
   userId: string = '';
@@ -28,10 +29,6 @@ export class ProductDetailsPage implements OnInit {
       this.userId = params['id'];
       this._store.dispatch(new getProductById(this.userId))
     });
-
-    this.productDetail.subscribe(product => {
-      console.log(product)
-    })
   }
 
   // Delete product
@@ -45,15 +42,23 @@ export class ProductDetailsPage implements OnInit {
       component: AddNewProductComponent,
       animated: true,
       backdropDismiss: true,
-      cssClass: 'addNewProductDetails'
+      cssClass: 'addNewProductDetails',
+      componentProps: {
+        userId: this.userId,
+        isUpdateForm: true
+      }
     });
     await m.present();
-
     m.onDidDismiss().then((Role) => {
       if (Role.role === 'save') {
 
       }
     })
+  }
+
+  // Navigate back to home page
+  navigateToHome(){
+    this._router.navigate(['home']);
   }
 
 }

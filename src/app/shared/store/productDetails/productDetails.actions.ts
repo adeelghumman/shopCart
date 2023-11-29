@@ -15,6 +15,11 @@ export class getAllProducts {
     constructor(public body: Product ) { }
   }
 
+  export class updateProduct {
+    static readonly type = '[updateProduct] Update Product';
+    constructor(public body: Product , public id : string) { }
+  }
+
   export class deleteProduct {
     static readonly type = '[DeleteProduct] Delete Product';
     constructor(public id: string ) { }
